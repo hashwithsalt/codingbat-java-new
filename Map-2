@@ -1,0 +1,194 @@
+public Map<String, Integer> word0(String[] strings) {
+   
+  Map<String, Integer> map = new HashMap<String, Integer>();
+   
+  for (int i = 0; i < strings.length; i++) {
+    map.put(strings[i], 0);
+  }
+   
+  return map;
+}
+
+----------------------------------------------------
+
+public Map<String, Integer> wordLen(String[] strings) {
+     
+  Map<String, Integer> map = new HashMap<String, Integer>();
+   
+  for (int i = 0; i < strings.length; i++) {
+    String tmp = strings[i];
+    map.put(tmp, tmp.length());
+  }
+   
+  return map;
+}
+
+----------------------------------------------------
+
+public Map<String, String> pairs(String[] strings) {
+   
+  Map<String, String> map = new HashMap<String, String>();
+   
+  for (int i = 0; i < strings.length; i++) {
+    String tmp   = strings[i];
+    String first = String.valueOf(tmp.charAt(0));
+    String last  = String.valueOf(tmp.charAt(tmp.length() - 1));
+    map.put(first, last);
+  }
+   
+  return map;
+}
+
+----------------------------------------------------
+
+public Map<String, Integer> wordCount(String[] strings) {
+   
+  Map<String, Integer> map = new HashMap<String, Integer>();
+   
+  for (int i = 0; i < strings.length; i++) {
+     
+    String tmp = strings[i];
+     
+    if (map.containsKey(tmp)) {
+      int count = map.get(tmp);
+      map.put(tmp, count + 1);
+    } else {
+      map.put(tmp, 1);
+    }
+     
+  }
+  return map;
+}
+
+----------------------------------------------------
+
+public Map<String, String> firstChar(String[] strings) {
+   
+  Map<String, String> map = new HashMap<String, String>();
+   
+  for (int i = 0; i < strings.length; i++) {
+     
+    String key = String.valueOf(strings[i].charAt(0));
+     
+    if (map.containsKey(key)) {
+      String val = map.get(key) + strings[i];
+      map.put(key, val);
+    } else {
+      map.put(key, strings[i]);
+    }
+     
+  }
+  return map;
+}
+
+----------------------------------------------------
+
+public String wordAppend(String[] strings) {
+  
+ Map<String, Integer> map    = new HashMap<String, Integer>();
+ String               result = "";
+  
+ for (int i = 0; i < strings.length; i++) {
+    
+   String key = strings[i];
+    
+   if (map.containsKey(key)) {
+     int val = map.get(key);
+     val++;
+     if (val % 2 == 0) {
+      result += key;
+     }
+     map.put(key, val);
+   } else {
+     map.put(key, 1);
+   }
+    
+ }
+  
+ return result;
+}
+
+----------------------------------------------------
+
+public Map<String, Boolean> wordMultiple(String[] strings) {
+   
+  Map<String, Integer> counts = new HashMap<String, Integer>();
+  Map<String, Boolean> result = new HashMap<String, Boolean>();
+   
+  for (int i = 0; i < strings.length; i++) {
+    String key = strings[i];
+     
+    if (counts.containsKey(key)) {
+      int val = counts.get(key);
+      val++;
+      counts.put(key, val);
+    } else {
+      counts.put(key, 1);
+    }
+     
+    result.put(key, counts.get(key) >= 2);
+  }
+   
+  return result;
+}
+
+----------------------------------------------------
+
+public String[] allSwap(String[] strings) {
+   
+  Map<String, Integer> map = new HashMap<String, Integer>();
+     
+  for (int i = 0; i < strings.length; i++) {
+     
+    String key = String.valueOf(strings[i].charAt(0));
+     
+    if (map.containsKey(key)) {
+       
+      int    pos   = map.get(key); 
+      String tmp   = strings[pos];
+      strings[pos] = strings[i];
+      strings[i]   = tmp ;
+       
+      map.remove(key);
+       
+    } else {
+      map.put(key, i);
+    }
+     
+  }
+   
+  return strings;
+}
+
+----------------------------------------------------
+
+public String[] firstSwap(String[] strings) {
+   
+  Map<String, Integer> map = new HashMap<String, Integer>();
+     
+  for (int i = 0; i < strings.length; i++) {
+     
+    String key = String.valueOf(strings[i].charAt(0));
+     
+    if (map.containsKey(key)) {
+       
+      int val = map.get(key);
+      if (val == -1) {
+        continue;
+      }
+       
+      int    pos   = map.get(key); 
+      String tmp   = strings[pos];
+      strings[pos] = strings[i];
+      strings[i]   = tmp ;
+       
+      map.put(key, -1);
+       
+    } else {
+      map.put(key, i);
+    }
+     
+  }
+   
+  return strings;
+}
